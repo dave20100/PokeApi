@@ -27,7 +27,7 @@ namespace PokeApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PokedexContext>(opt => opt.UseNpgsql("Host = localhost; Port = 5432; Username = postgres; Password = dawmik987; Database = Users;"));
+            services.AddDbContext<PokedexContext>(opt => opt.UseNpgsql("Host = localhost; Port = 5432; Username = postgres; Password = dawmik987; Database = Pokemons;"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

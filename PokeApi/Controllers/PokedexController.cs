@@ -19,9 +19,10 @@ namespace PokeApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult Show()
+        public JsonResult Show()
         {
-            return Ok("DAASD");
+            
+            return new JsonResult(pokedexContext.Pokedexes.FirstOrDefault(pkx => pkx.Id == 1).Pokemons);
         }
         [HttpPost]
         public ActionResult AddPokedex([FromBody]Pokedex pokedex)

@@ -10,8 +10,8 @@ using PokeApi.Models;
 namespace PokeApi.Migrations
 {
     [DbContext(typeof(PokedexContext))]
-    [Migration("20190711104422_addedislegendary")]
-    partial class addedislegendary
+    [Migration("20190713122126_pokedexes")]
+    partial class pokedexes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,15 @@ namespace PokeApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pokedexes");
+
+                    b.HasData(
+                        new { Id = 1, Name = "Kanto" },
+                        new { Id = 2, Name = "Johto" },
+                        new { Id = 3, Name = "Hoenn" },
+                        new { Id = 4, Name = "Sinnoh" },
+                        new { Id = 5, Name = "Unova" },
+                        new { Id = 6, Name = "Kalos" }
+                    );
                 });
 
             modelBuilder.Entity("PokeApi.Models.Pokemon", b =>

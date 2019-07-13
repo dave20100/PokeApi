@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PokeApi.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,15 +39,17 @@ namespace PokeApi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    PokedexNumber = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    FirstTypeId = table.Column<int>(nullable: true),
+                    SecondTypeId = table.Column<int>(nullable: true),
                     Hp = table.Column<int>(nullable: false),
                     Attack = table.Column<int>(nullable: false),
                     Defense = table.Column<int>(nullable: false),
                     Speed = table.Column<int>(nullable: false),
                     Sp_Atk = table.Column<int>(nullable: false),
                     Sp_Def = table.Column<int>(nullable: false),
-                    FirstTypeId = table.Column<int>(nullable: true),
-                    SecondTypeId = table.Column<int>(nullable: true),
+                    Is_Legendary = table.Column<bool>(nullable: false),
                     PokedexId = table.Column<int>(nullable: true),
                     PokemonId = table.Column<int>(nullable: true)
                 },

@@ -10,8 +10,8 @@ using PokeApi.Models;
 namespace PokeApi.Migrations
 {
     [DbContext(typeof(PokedexContext))]
-    [Migration("20190709202040_initial")]
-    partial class initial
+    [Migration("20190713114947_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,9 +66,13 @@ namespace PokeApi.Migrations
 
                     b.Property<int>("Hp");
 
+                    b.Property<bool>("Is_Legendary");
+
                     b.Property<string>("Name");
 
                     b.Property<int?>("PokedexId");
+
+                    b.Property<int>("PokedexNumber");
 
                     b.Property<int?>("PokemonId");
 

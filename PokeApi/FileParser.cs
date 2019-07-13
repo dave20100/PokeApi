@@ -1,4 +1,5 @@
-﻿using PokeApi.Models;
+﻿using CsvHelper;
+using PokeApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,13 +14,11 @@ namespace PokeApi
         {
             List<Pokemon> pokemons = new List<Pokemon>();
 
-            using(StreamReader reader = new StreamReader("Poke.txt"))
+            using(StreamReader streamreader = new StreamReader("Poke.csv"))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
+                var reader = new CsvReader(streamreader);
+
+                
             }
             return pokemons;
         }

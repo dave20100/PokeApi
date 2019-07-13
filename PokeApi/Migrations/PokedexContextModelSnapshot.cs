@@ -49,6 +49,15 @@ namespace PokeApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pokedexes");
+
+                    b.HasData(
+                        new { Id = 1, Name = "Kanto" },
+                        new { Id = 2, Name = "Johto" },
+                        new { Id = 3, Name = "Hoenn" },
+                        new { Id = 4, Name = "Sinnoh" },
+                        new { Id = 5, Name = "Unova" },
+                        new { Id = 6, Name = "Kalos" }
+                    );
                 });
 
             modelBuilder.Entity("PokeApi.Models.Pokemon", b =>
