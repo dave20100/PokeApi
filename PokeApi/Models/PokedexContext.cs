@@ -15,10 +15,11 @@ namespace PokeApi.Models
             {
                 builder.Entity<Pokedex>().HasData(pkdx);
             }
-            //foreach(Pokemon poke in FileParser.ParsePokemon())
-            //{
-            //    builder.Entity<Pokemon>().HasData(poke);
-            //}
+            foreach (Pokemon poke in FileParser.ParsePokemon())
+            {
+
+                builder.Entity<Pokemon>().HasData(poke);
+            }
         }
         public PokedexContext(DbContextOptions<PokedexContext> options) : base(options){}
 

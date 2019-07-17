@@ -9,6 +9,6 @@ namespace PokeApi.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual PokeType DamageType { get; set; }
+        public string DamageType { get; set; }
     }
 }
