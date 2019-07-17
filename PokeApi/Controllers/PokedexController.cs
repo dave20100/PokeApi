@@ -18,26 +18,20 @@ namespace PokeApi.Controllers
             pokedexContext = ctx;
         }
 
-        [HttpGet]
+        [HttpGet("Pokedexes")]
         public JsonResult Show()
         {
-            
-            return new JsonResult(pokedexContext.Pokedexes.FirstOrDefault(pkx => pkx.Id == 1).Pokemons);
+            return new JsonResult(pokedexContext.Pokedexes);
         }
-        [HttpPost]
-        public ActionResult AddPokedex([FromBody]Pokedex pokedex)
+        [HttpGet("Pokemons/{pokedexnr?}")]
+        public JsonResult ShowPokemons(int pokedexnr)
         {
-            pokedexContext.Add(pokedex);
-            pokedexContext.SaveChanges();
-            return Ok();
+            if(pokedexnr == 0)
+            {
+                return new JsonResult(pokedexContext.Pokemons.OrderBy(pk => pk.EntryNumber ).Select(pk => new { pk.Name, pk.FirstType, pk.SecondType}));
+            }
+            return new JsonResult(pokedexContext.Pokemons.Where(pk => pk.PokedexId == pokedexnr).OrderBy(pk => pk.EntryNumber).Select(pk => new { pk.Name, pk.FirstType, pk.SecondType }));
         }
         
-        [HttpPost("AddPokemon/{pokedexName}")]
-        public ActionResult AddPokemon(string pokedexName, [FromBody]Pokemon pokemon)
-        {
-            pokedexContext.Pokedexes.First(pkdx => pkdx.Name == pokedexName).Pokemons.Add(pokemon);
-            pokedexContext.SaveChanges();
-            return Ok();
-        }
     }
 }

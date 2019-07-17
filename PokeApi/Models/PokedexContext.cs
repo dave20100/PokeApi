@@ -17,12 +17,12 @@ namespace PokeApi.Models
             }
             foreach (Pokemon poke in FileParser.ParsePokemon())
             {
-
                 builder.Entity<Pokemon>().HasData(poke);
             }
         }
         public PokedexContext(DbContextOptions<PokedexContext> options) : base(options){}
 
         public DbSet<Pokedex> Pokedexes { get; set; }
+        public DbSet<Pokemon> Pokemons { get; set; }
     }
 }
