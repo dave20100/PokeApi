@@ -15,8 +15,9 @@ namespace PokeApi.Models
             {
                 builder.Entity<Pokedex>().HasData(pkdx);
             }
-            foreach (Pokemon poke in FileParser.ParsePokemon())
+            foreach (Pokemon poke in FileParser.ParsePokemon().OrderBy(pk => pk.EntryNumber))
             {
+                poke.ImagePath = poke.EntryNumber + ".png";
                 builder.Entity<Pokemon>().HasData(poke);
             }
         }

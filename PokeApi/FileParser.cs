@@ -24,6 +24,10 @@ namespace PokeApi
                     {
                         List<string> pokemonCharacteristics = line.Split(',').ToList<string>();
 
+                        if (pokemonCharacteristics[1].Contains(" "))
+                        {
+                            continue;
+                        }
                         Pokemon pokemon = new Pokemon()
                         {
                             EntryNumber = Int32.Parse(pokemonCharacteristics[0]),

@@ -24,6 +24,7 @@ namespace PokeApi.Models
         public int Sp_Def { get; set; }
         public bool Is_Legendary { get; set; }
         public int PokedexId { get; set; }
+        public string ImagePath { get; set; }
         public virtual ICollection<Move> Moves { get; set; }
         public virtual ICollection<Pokemon> Evolutions { get; set; }
 

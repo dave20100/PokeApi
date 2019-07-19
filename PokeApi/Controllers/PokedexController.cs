@@ -26,12 +26,24 @@ namespace PokeApi.Controllers
         [HttpGet("Pokemons/{pokedexnr?}")]
         public JsonResult ShowPokemons(int pokedexnr)
         {
-            if(pokedexnr == 0)
+            List<Pokemon> pokemons;
+            if (pokedexnr == 0)
             {
-                return new JsonResult(pokedexContext.Pokemons.OrderBy(pk => pk.EntryNumber ).Select(pk => new { pk.Name, pk.FirstType, pk.SecondType}));
+                pokemons = pokedexContext.Pokemons.OrderBy(pk => pk.EntryNumber).ToList<Pokemon>();
             }
-            return new JsonResult(pokedexContext.Pokemons.Where(pk => pk.PokedexId == pokedexnr).OrderBy(pk => pk.EntryNumber).Select(pk => new { pk.Name, pk.FirstType, pk.SecondType }));
+            else
+            {
+                pokemons = (pokedexContext.Pokemons.Where(pk => pk.PokedexId == pokedexnr).OrderBy(pk => pk.EntryNumber).ToList<Pokemon>());
+            }
+            return new JsonResult(pokemons.Select(pk => new { pk.Id, pk.Name, pk.FirstType, pk.SecondType}));
+        }
+        [HttpGet("Pokemons/{pokedexnr}/{pokemonnr}")]
+        public JsonResult ShowDetailedInfo(int pokedexnr, int pokemonnr)
+        {
+            Pokemon selected = pokedexContext.Pokemons.FirstOrDefault(poke => poke.PokedexId == pokedexnr && poke.Id == pokemonnr);
+            return new JsonResult(selected);
         }
         
+
     }
 }
