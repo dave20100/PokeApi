@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PokeApi
 {
-    public static class FileParser
+    public static class PokemonParser
     {
         public static List<Pokemon> ParsePokemon()
         {

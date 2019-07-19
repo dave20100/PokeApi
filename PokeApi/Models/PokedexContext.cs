@@ -15,15 +15,21 @@ namespace PokeApi.Models
             {
                 builder.Entity<Pokedex>().HasData(pkdx);
             }
-            foreach (Pokemon poke in FileParser.ParsePokemon().OrderBy(pk => pk.EntryNumber))
+            foreach (Pokemon poke in PokemonParser.ParsePokemon().OrderBy(pk => pk.EntryNumber))
             {
                 poke.ImagePath = poke.EntryNumber + ".png";
                 builder.Entity<Pokemon>().HasData(poke);
+            }
+
+            foreach (Item item in ItemParser.ParseItems())
+            {
+                builder.Entity<Item>().HasData(item);
             }
         }
         public PokedexContext(DbContextOptions<PokedexContext> options) : base(options){}
 
         public DbSet<Pokedex> Pokedexes { get; set; }
         public DbSet<Pokemon> Pokemons { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 }

@@ -43,7 +43,21 @@ namespace PokeApi.Controllers
             Pokemon selected = pokedexContext.Pokemons.FirstOrDefault(poke => poke.PokedexId == pokedexnr && poke.Id == pokemonnr);
             return new JsonResult(selected);
         }
-        
+
+        [HttpGet("Items/{itemnr?}")]
+        public JsonResult ShowItems(int itemnr)
+        {
+            List<Item> items;
+            if (itemnr == 0)
+            {
+                items = pokedexContext.Items.OrderBy(it => it.Name).ToList<Item>();
+            }
+            else
+            {
+                items = pokedexContext.Items.Where(it => it.Id == itemnr).OrderBy(it => it.Name).ToList<Item>();
+            }
+            return new JsonResult(items);
+        }
 
     }
 }
